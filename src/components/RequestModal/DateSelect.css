@@ -1,0 +1,4 @@
+.selectHolder {
+  display: flex;
+  flex-direction: row;
+}

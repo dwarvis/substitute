@@ -1,14 +1,17 @@
 .loginBox {
-    display:flex;
-    flex-direction: column;
-    padding:0%;
-  }
-  
-  .formItem, select, textarea{
-    margin: 5%;
-    color: whitesmoke;
-  }
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  align-items: center;
+}
 
-  .whiteLink {
-    color: inherit;
-  }
+.formItem,
+select,
+textarea {
+  margin: 5%;
+  color: whitesmoke;
+}
+
+.whiteLink {
+  color: inherit;
+}

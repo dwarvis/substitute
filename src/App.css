@@ -35,3 +35,20 @@
   }
 }
 
+.headerRow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 90%;
+  padding: 2%;
+}
+
+.headerButton {
+  margin: 1%;
+}
+
+.buttonDiv {
+  display: flex;
+  flex-direction: row;
+}

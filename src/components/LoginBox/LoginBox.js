@@ -1,22 +1,61 @@
-import React from 'react'
-import "./LoginBox.css"
-import { Button, Input } from '@geist-ui/react'
-import { Link } from "react-router-dom"
+import React, { useState } from "react";
+import "./LoginBox.css";
+import { Button, Input } from "@geist-ui/react";
+import { auth } from "../../fire";
+import { Redirect } from "react-router-dom";
 
-function LoginBox() {
+function LoginBox(props) {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loggedIn, setLoggedIn] = useState(false);
 
-    return (
-        <div className="loginBox">
-          <Input type="text" placeholder="Email" className="formItem"/>
-          <Input.Password type="text" placeholder="Password" className="formItem"/>
-          <Button type="success" className="formItem">
-            <Link to="/" className="whiteLink">
-              Login
-            </Link>
-          </Button>
-        </div>
-    )
+  function handleLogin() {
+    console.log("logging in with:");
+    console.log(email);
+    console.log(password);
+    auth
+      .signInWithEmailAndPassword(email, password)
+      .then((user) => {
+        setLoggedIn(true);
+      })
+      .catch((error) => {
+        console.log(error);
+        alert("Invalid login, please try again.");
+      });
+  }
+
+  function handleEmailChange(event) {
+    setEmail(event.target.value);
+  }
+  function handlePasswordChange(event) {
+    setPassword(event.target.value);
+  }
+
+  return (
+    <div className="loginBox">
+      <Input
+        type="text"
+        placeholder="Email"
+        value={email}
+        className="formItem"
+        onChange={(e) => handleEmailChange(e)}
+        width="90%"
+      />
+      <Input.Password
+        type="text"
+        placeholder="Password"
+        value={password}
+        className="formItem"
+        onChange={(e) => handlePasswordChange(e)}
+        width="90%"
+      />
+      <Button type="success" className="formItem" onClick={handleLogin}>
+        Login
+      </Button>
+      {loggedIn ? <Redirect to="/" /> : null}
+    </div>
+  );
 }
 
-export default LoginBox 
+export default LoginBox;
 //lets component be used in other files

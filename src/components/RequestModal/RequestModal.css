@@ -1,0 +1,15 @@
+.modalBox {
+  display: flex;
+  flex-direction: column;
+  padding: 0%;
+}
+
+.modalItem {
+  margin: 5%;
+  color: whitesmoke;
+}
+
+.modalItem {
+  margin: 5%;
+  color: whitesmoke;
+}

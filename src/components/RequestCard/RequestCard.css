@@ -1,0 +1,17 @@
+.cardFooter {
+  display: flex;
+  flex-direction: column;
+}
+
+.footerLine {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.card {
+  margin: 5%;
+  width: 100%;
+  min-width: 30vw;
+}
