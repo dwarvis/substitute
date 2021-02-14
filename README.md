@@ -8,8 +8,8 @@ Substitute is a program designed to manage requests for subsitute teachers withi
 
 1. Download/clone this project
 2. Install Node Package Manager (If you haven't already)
-3. Run npm install in your code directory
-4. Run npm start
+3. Run `npm install` in your code directory
+4. Run `npm start`
 
 ## General Usage Notes
 
