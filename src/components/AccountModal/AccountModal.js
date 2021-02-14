@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
-import { Modal } from '@geist-ui/react';
+import React, { useState } from "react";
+import { Modal } from "@geist-ui/react";
 
 // firebase
-import { auth, database } from '../../fire';
-import { Redirect } from 'react-router-dom';
+import { auth, database } from "../../fire";
+import { Redirect } from "react-router-dom";
 
 function AccountModal(props) {
   const [loggedOut, setLoggedOut] = useState(false);
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [subject, setSubject] = useState('');
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [subject, setSubject] = useState("");
 
   function logoutHandler() {
     auth.signOut().then(() => {
@@ -22,8 +22,8 @@ function AccountModal(props) {
     var userId = auth.currentUser.uid;
 
     database
-      .ref('/users/' + userId)
-      .once('value')
+      .ref("/users/" + userId)
+      .once("value")
       .then((snapshot) => {
         var data = snapshot.val();
         setName(data.name);
@@ -34,7 +34,7 @@ function AccountModal(props) {
 
   return (
     <Modal open={props.open} onClose={props.onClose}>
-      {loggedOut ? <Redirect to='/login' /> : null}
+      {loggedOut ? <Redirect to="/login" /> : null}
       <Modal.Title>Account Information</Modal.Title>
       <Modal.Content></Modal.Content>
       <Modal.Subtitle>Name: {name}</Modal.Subtitle>
@@ -43,7 +43,6 @@ function AccountModal(props) {
       <Modal.Action passive onClick={props.closeModal}>
         Cancel
       </Modal.Action>
-      {/* edit this so that you actually log out and close the modal*/}
       <Modal.Action onClick={logoutHandler}>Logout </Modal.Action>
     </Modal>
   );

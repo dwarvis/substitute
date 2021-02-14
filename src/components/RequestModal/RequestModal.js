@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import { Modal, Input } from '@geist-ui/react';
+import React, { useState } from "react";
+import { Modal, Input } from "@geist-ui/react";
 
 //component imports
-import DateSelect from './DateSelect';
-import SubjectSelect from './SubjectSelect';
+import DateSelect from "./DateSelect";
+import SubjectSelect from "./SubjectSelect";
 
-import { auth, database, firestore } from '../../fire';
+import { auth, database, firestore } from "../../fire";
 
 function RequestModal(props) {
   const [myName, setMyName] = useState();
@@ -15,8 +15,8 @@ function RequestModal(props) {
     var userId = auth.currentUser.uid;
 
     database
-      .ref('/users/' + userId)
-      .once('value')
+      .ref("/users/" + userId)
+      .once("value")
       .then((snapshot) => {
         var data = snapshot.val();
         setMyName(data.name);
@@ -33,23 +33,11 @@ function RequestModal(props) {
       startTime: start,
       duration: duration,
       subject: subject,
-      date: year + '/' + month + '/' + day,
-      acceptedBy: 'none',
+      date: year + "/" + month + "/" + day,
+      acceptedBy: "none",
     };
-    firestore.collection(' substituteRequest').add(output);
+    firestore.collection(" substituteRequest").add(output);
   };
-
-  // //Name handler
-  // const [name, setName] = useState();
-  // const nameHandler = (e) => {
-  //   setName(e.target.value);
-  // };
-
-  // //Email handler
-  // const [email, setEmail] = useState();
-  // const emailHandler = (e) => {
-  //   setEmail(e.target.value);
-  // };
 
   //Start time handler
   const [start, setStart] = useState();
@@ -64,15 +52,15 @@ function RequestModal(props) {
   };
 
   //Subject handler
-  const [subject, setSubject] = useState('');
+  const [subject, setSubject] = useState("");
   const subjectHandler = (val) => {
     setSubject(val);
   };
 
   //Date handler
-  const [day, setDay] = useState('null');
-  const [month, setMonth] = useState('null');
-  const [year, setYear] = useState('null');
+  const [day, setDay] = useState("null");
+  const [month, setMonth] = useState("null");
+  const [year, setYear] = useState("null");
   const dayHandler = (val) => setDay(val);
   const monthHandler = (val) => setMonth(val);
   const yearHandler = (val) => setYear(val);
@@ -82,20 +70,6 @@ function RequestModal(props) {
       <Modal.Title>Request Details</Modal.Title>
       <Modal.Content>
         <div>
-          {/* <p>Your full name: </p>
-          <Input
-            type='text'
-            placeholder='eg. Daniel Dumile'
-            onChange={nameHandler}
-            className='modalItem'
-          />
-          <p>Your school email: </p>
-          <Input
-            type='text'
-            placeholder='eg. mfdoom@cis.edu.hk'
-            onChange={emailHandler}
-            className='modalItem'
-          /> */}
           <p>On which date do you need a substitute? </p>
           <div>
             <DateSelect
@@ -109,16 +83,16 @@ function RequestModal(props) {
           </div>
           <p>What time does the class begin (24 hour format)? </p>
           <Input
-            type='text'
-            placeholder='eg. 0755'
-            className='modalItem'
+            type="text"
+            placeholder="eg. 0755"
+            className="modalItem"
             onChange={startHandler}
           />
           <p>How long is the substitute needed for (in minutes)? </p>
           <Input
-            type='text'
-            placeholder='eg. 75'
-            className='modalItem'
+            type="text"
+            placeholder="eg. 75"
+            className="modalItem"
             onChange={durationHandler}
           />
           <p>What subject do they need to teach? </p>
@@ -134,11 +108,5 @@ function RequestModal(props) {
     </Modal>
   );
 }
-// teacherName = "Dumb Card";
-// teacherEmail = "abc@abc.com";
-// start = "1234";
-// duration = "60";
-// subject = "Aliens";
-// date = "00/00/0000";
 
 export default RequestModal;
