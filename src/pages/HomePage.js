@@ -76,7 +76,7 @@ function HomePage() {
                 id={obj.id}
                 teacherName={obj.name}
                 teacherEmail={obj.email}
-                start={obj.time}
+                start={obj.startTime}
                 duration={obj.duration}
                 subject={obj.subject}
                 date={obj.date}
