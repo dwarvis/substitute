@@ -1,3 +1,22 @@
+# Substitute (Ver 1.0 14/02)
+
+## What is Substitute
+
+Substitute is a program designed to manage requests for subsitute teachers within a school. Currently, substitute is designed to only manage one school, and uses one database. However, one could adapt Substitute to their own school by linking the program to a different firebase database.
+
+## How do I run Substitute?
+
+1. Download/clone this project
+2. Install Node Package Manager (If you haven't already)
+3. Run npm install in your code directory
+4. Run npm start
+
+## General Usage Notes
+
+1. Please note that despite cloning the project, you will not be able to manipulate the firebase data.
+2. Please note that emails are sent by Email.JS each time a substitute request is accepted, and do not abuse this function to disturb others.
+3. Please note that Email.JS has a mailing limit of 500 per day.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

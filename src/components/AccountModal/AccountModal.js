@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Modal } from "@geist-ui/react";
+import constants from "../../Constants";
 
 // firebase
 import { auth, database } from "../../fire";
@@ -22,7 +23,7 @@ function AccountModal(props) {
     var userId = auth.currentUser.uid;
 
     database
-      .ref("/users/" + userId)
+      .ref(constants.usersRef + "/" + userId)
       .once("value")
       .then((snapshot) => {
         var data = snapshot.val();
@@ -34,7 +35,7 @@ function AccountModal(props) {
 
   return (
     <Modal open={props.open} onClose={props.onClose}>
-      {loggedOut ? <Redirect to="/login" /> : null}
+      {loggedOut ? <Redirect to={constants.loginURL} /> : null}
       <Modal.Title>Account Information</Modal.Title>
       <Modal.Content></Modal.Content>
       <Modal.Subtitle>Name: {name}</Modal.Subtitle>

@@ -1,16 +1,19 @@
-import React, { useState } from 'react';
-import { Redirect } from 'react-router-dom';
-import RequestCard from '../components/RequestCard/RequestCard';
-import '../pages/pages.css';
-import '../App.css';
-import RequestModal from '../components/RequestModal/RequestModal';
-import AccountModal from '../components/AccountModal/AccountModal';
-import { auth, firestore } from '../fire';
+import React, { useState } from "react";
+import { Redirect } from "react-router-dom";
+import RequestCard from "../components/RequestCard/RequestCard";
+import "../pages/pages.css";
+import "../App.css";
+import RequestModal from "../components/RequestModal/RequestModal";
+import AccountModal from "../components/AccountModal/AccountModal";
+import { auth, firestore } from "../fire";
+
+// constants import
+import constants from "../Constants";
 
 // data import
-import accData from '../fakeAccData';
-import { Text, Button } from '@geist-ui/react';
-import { useCollectionData } from 'react-firebase-hooks/firestore';
+import accData from "../fakeAccData";
+import { Text, Button } from "@geist-ui/react";
+import { useCollectionData } from "react-firebase-hooks/firestore";
 
 function HomePage() {
   const [reqModalIsOpen, setReqModalIsOpen] = useState(false);
@@ -19,51 +22,52 @@ function HomePage() {
   const accountHandler = () => setAccModalIsOpen(true);
   const closeRequestHandler = (event) => {
     setReqModalIsOpen(false);
-    console.log('closed');
+    console.log("closed");
   };
   const closeAccountHandler = (event) => {
     setAccModalIsOpen(false);
-    console.log('closed');
+    console.log("closed");
   };
 
   //https://stackoverflow.com/questions/1531093/how-do-i-get-the-current-date-in-javascript
   var today = new Date();
-  var dd = String(today.getDate()).padStart(2, '0');
-  var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+  var dd = String(today.getDate()).padStart(2, "0");
+  var mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
   var yyyy = today.getFullYear();
-  today = String(yyyy + '/' + mm + '/' + dd);
+  today = String(yyyy + "/" + mm + "/" + dd);
 
   //firestore
-  const substituteRequests = firestore.collection(' substituteRequest');
-  const query = substituteRequests.orderBy('date', 'asc');
-  const [requests] = useCollectionData(query, { idField: 'id' });
+  const substituteRequests = firestore.collection(
+    constants.firestoreSubRequestRef
+  );
+  const query = substituteRequests.orderBy("date", "asc");
+  const [requests] = useCollectionData(query, { idField: "id" });
 
   return (
-    <header className='App-header'>
-      {auth.currentUser === null ? <Redirect to='/login' /> : null}
-      <div className='headerRow'>
+    <header className="App-header">
+      {auth.currentUser === null ? <Redirect to="/login" /> : null}
+      <div className="headerRow">
         <Text h1>Substitute</Text>
-        <div className='buttonDiv'>
+        <div className="buttonDiv">
           <Button
-            type='success'
+            type="success"
             onClick={requestHandler}
-            className='headerButton'
+            className="headerButton"
             ghost
           >
             New Substitute Request
           </Button>
           <Button
-            type='secondary'
+            type="secondary"
             onClick={accountHandler}
-            className='headerButton'
+            className="headerButton"
             ghost
           >
             Account
           </Button>
         </div>
       </div>
-      {/* TODO: remove dumb card */}
-      <div className='cardList'>
+      <div className="cardList">
         {/* loop */}
         {requests &&
           requests.map(function (obj, i) {
